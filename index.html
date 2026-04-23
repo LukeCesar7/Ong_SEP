@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONG Semear É Preciso Brasil</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a8a3a;
+    --green-dark: #0f5c25;
+    --green-light: #e8f7ed;
+    --yellow: #f5c200;
+    --yellow-dark: #c9a000;
+    --blue: #1c2fa0;
+    --blue-dark: #111f72;
+    --white: #ffffff;
+    --off-white: #f9faf7;
+    --text: #1a1a1a;
+    --text-muted: #555;
+    --shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background: var(--off-white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 3px solid var(--green);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 40px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; }
+  .nav-logo img { height: 52px; width: auto; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 14px; font-weight: 700; color: var(--blue);
+    text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: #fff; border: none;
+    padding: 10px 24px; border-radius: 50px; font-size: 14px;
+    font-weight: 800; cursor: pointer; letter-spacing: 0.5px;
+    font-family: 'Nunito', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--green-dark); transform: scale(1.04); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--green);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 100px 40px 60px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(245,194,0,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(0,0,0,0.18) 0%, transparent 60%);
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; position: relative; z-index: 1;
+  }
+  .hero-text h1 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 900; color: #fff;
+    line-height: 1.18; margin-bottom: 20px;
+  }
+  .hero-text h1 span { color: var(--yellow); }
+  .hero-text p {
+    font-size: 18px; color: rgba(255,255,255,0.88);
+    line-height: 1.75; margin-bottom: 32px; font-weight: 400;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-hero-primary {
+    background: var(--yellow); color: var(--blue-dark);
+    border: none; padding: 15px 36px; border-radius: 50px;
+    font-size: 16px; font-weight: 800; cursor: pointer;
+    font-family: 'Nunito', sans-serif; letter-spacing: 0.3px;
+    box-shadow: 0 4px 20px rgba(245,194,0,0.4);
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,194,0,0.5); }
+  .btn-hero-secondary {
+    background: transparent; color: #fff;
+    border: 2px solid rgba(255,255,255,0.6); padding: 15px 36px; border-radius: 50px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-hero-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-logo-big {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 24px; padding: 40px;
+    text-align: center; backdrop-filter: blur(4px);
+  }
+  .hero-logo-big img { width: 220px; height: auto; }
+
+  /* ── IMPACT BAND ── */
+  .impact-band {
+    background: var(--blue);
+    padding: 40px;
+  }
+  .impact-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .impact-item { text-align: center; padding: 16px; }
+  .impact-number {
+    font-family: 'Merriweather', serif;
+    font-size: 36px; font-weight: 900; color: var(--yellow);
+    display: block; line-height: 1;
+  }
+  .impact-label { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 80px 40px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; background: var(--green-light);
+    color: var(--green-dark); font-size: 12px; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px;
+    border-radius: 50px; margin-bottom: 14px;
+    border: 1.5px solid rgba(26,138,58,0.2);
+  }
+  .section-title {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(26px, 3.5vw, 38px); font-weight: 900;
+    color: var(--blue-dark); line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-title span { color: var(--green); }
+  .section-desc {
+    font-size: 16px; color: var(--text-muted); line-height: 1.8;
+    max-width: 620px; margin-bottom: 48px;
+  }
+
+  /* ── CAUSAS ── */
+  #causas { background: var(--off-white); }
+  .causas-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  }
+  .causa-card {
+    background: #fff; border-radius: 20px;
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 1.5px solid rgba(26,138,58,0.1);
+  }
+  .causa-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.14); }
+  .causa-icon-wrap {
+    height: 130px; display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+  }
+  .causa-icon-wrap.green { background: linear-gradient(135deg, #1a8a3a, #27b853); }
+  .causa-icon-wrap.yellow { background: linear-gradient(135deg, #f5c200, #ffdc4e); }
+  .causa-icon-wrap.blue { background: linear-gradient(135deg, #1c2fa0, #3451d1); }
+  .causa-body { padding: 24px; }
+  .causa-body h3 {
+    font-family: 'Merriweather', serif; font-size: 18px; font-weight: 900;
+    color: var(--blue-dark); margin-bottom: 10px;
+  }
+  .causa-body p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+  .causa-bar { height: 6px; background: #eee; border-radius: 99px; margin-top: 18px; overflow: hidden; }
+  .causa-bar-fill { height: 100%; border-radius: 99px; background: var(--green); }
+
+  /* ── COMO AJUDAR ── */
+  #ajudar { background: #fff; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .step {
+    text-align: center; padding: 32px 20px;
+    border-radius: 20px; border: 1.5px solid rgba(26,138,58,0.12);
+    background: var(--off-white);
+    position: relative;
+  }
+  .step-num {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--green);
+    color: #fff; font-size: 20px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px; font-family: 'Merriweather', serif;
+  }
+  .step h4 { font-size: 15px; font-weight: 800; color: var(--blue-dark); margin-bottom: 8px; }
+  .step p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── DEPOIMENTOS ── */
+  #depoimentos { background: var(--green-light); }
+  .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .dep-card {
+    background: #fff; border-radius: 20px; padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border-top: 4px solid var(--green);
+    position: relative;
+  }
+  .dep-card::before {
+    content: '\201C';
+    font-family: 'Merriweather', serif; font-size: 80px;
+    color: var(--green-light); position: absolute; top: -8px; left: 20px;
+    line-height: 1;
+  }
+  .dep-text { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; position: relative; z-index: 1; }
+  .dep-author { display: flex; align-items: center; gap: 12px; }
+  .dep-avatar {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; color: #fff;
+    font-family: 'Merriweather', serif;
+  }
+  .dep-name { font-size: 14px; font-weight: 800; color: var(--blue-dark); }
+  .dep-role { font-size: 12px; color: var(--text-muted); }
+
+  /* ── PIX / DOAÇÃO ── */
+  #doe { background: var(--blue); padding: 80px 40px; }
+  .doe-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: start;
+  }
+  .doe-text .section-tag { background: rgba(245,194,0,0.15); color: var(--yellow); border-color: rgba(245,194,0,0.3); }
+  .doe-text .section-title { color: #fff; }
+  .doe-text .section-desc { color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+  .pix-key-card {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-radius: 20px; padding: 28px; margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .pix-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px; font-weight: 700; }
+  .pix-key {
+    font-family: 'Merriweather', serif;
+    font-size: 20px; font-weight: 700; color: var(--yellow);
+    word-break: break-all; line-height: 1.4;
+  }
+  .pix-copy-btn {
+    margin-top: 14px; background: var(--yellow); color: var(--blue-dark);
+    border: none; padding: 10px 22px; border-radius: 50px;
+    font-size: 13px; font-weight: 800; cursor: pointer;
+    font-family: 'Nunito', sans-serif; letter-spacing: 0.3px;
+    transition: transform 0.15s;
+  }
+  .pix-copy-btn:hover { transform: scale(1.04); }
+  .pix-copy-btn.copied { background: #27b853; color: #fff; }
+
+  .pix-info { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 8px; line-height: 1.6; }
+
+  .qr-section {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    border-radius: 20px; padding: 32px;
+    text-align: center;
+  }
+  .qr-title { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 6px; letter-spacing: 0.3px; }
+  .qr-subtitle { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+  .qr-placeholder {
+    width: 200px; height: 200px; margin: 0 auto 24px;
+    border: 2.5px dashed rgba(255,255,255,0.3);
+    border-radius: 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; background: rgba(255,255,255,0.04);
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .qr-placeholder:hover { border-color: rgba(245,194,0,0.6); background: rgba(255,255,255,0.07); }
+  .qr-placeholder input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  }
+  .qr-placeholder-icon { font-size: 40px; }
+  .qr-placeholder-text { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; line-height: 1.5; }
+  .qr-preview { width: 200px; height: 200px; object-fit: contain; border-radius: 12px; display: block; margin: 0 auto; }
+  .qr-remove-btn {
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.2); padding: 6px 18px;
+    border-radius: 50px; font-size: 12px; cursor: pointer;
+    font-family: 'Nunito', sans-serif; display: none; margin: 12px auto 0;
+  }
+  .qr-note { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 16px; line-height: 1.6; }
+
+  .valores-doe { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+  .valor-btn {
+    background: rgba(255,255,255,0.1); color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.2); padding: 10px 20px;
+    border-radius: 50px; font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .valor-btn:hover, .valor-btn.active { background: var(--yellow); color: var(--blue-dark); border-color: var(--yellow); }
+
+  /* ── CONTATO / FOOTER ── */
+  footer {
+    background: var(--blue-dark); color: rgba(255,255,255,0.75);
+    padding: 60px 40px 28px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand img { height: 64px; margin-bottom: 16px; }
+  .footer-brand p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.6); max-width: 320px; }
+  .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+  .social-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer; transition: background 0.2s;
+    text-decoration: none;
+  }
+  .social-icon:hover { background: var(--green); }
+  .footer-col h4 { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
+  .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--yellow); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-bottom span { color: var(--yellow); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .fade-up-d1 { animation-delay: 0.1s; opacity: 0; }
+  .fade-up-d2 { animation-delay: 0.25s; opacity: 0; }
+  .fade-up-d3 { animation-delay: 0.4s; opacity: 0; }
+
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(26,138,58,0.4); }
+    70% { box-shadow: 0 0 0 18px rgba(26,138,58,0); }
+    100% { box-shadow: 0 0 0 0 rgba(26,138,58,0); }
+  }
+  .pulse { animation: pulse-ring 2.2s infinite; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-btns { justify-content: center; }
+    .impact-inner { grid-template-columns: repeat(2, 1fr); }
+    .causas-grid, .dep-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .doe-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    section { padding: 60px 20px; }
+    #doe { padding: 60px 20px; }
+    footer { padding: 48px 20px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="png/top1.png" alt="ONG Semear é Preciso Brasil" onerror="this.style.display='none'">
+  </div>
+  <div class="nav-links">
+    <a href="#causas">Nossas causas</a>
+    <a href="#ajudar">Como ajudar</a>
+    <a href="#depoimentos">Histórias</a>
+    <a href="#doe">Doe agora</a>
+  </div>
+  <button class="nav-cta pulse" onclick="document.getElementById('doe').scrollIntoView({behavior:'smooth'})">💚 Quero Doar</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text fade-up">
+      <h1>Semear hoje é<br><span>colher esperança</span><br>amanhã</h1>
+      <p>Levamos alimentação, educação, saúde e dignidade a crianças e famílias em situação de vulnerabilidade.</p>
+      <div class="hero-btns fade-up fade-up-d1">
+        <button class="btn-hero-primary" onclick="document.getElementById('doe').scrollIntoView({behavior:'smooth'})">💛 Faça uma doação</button>
+        <button class="btn-hero-secondary" onclick="document.getElementById('causas').scrollIntoView({behavior:'smooth'})">Conheça nossa missão</button>
+      </div>
+    </div>
+    <div class="hero-visual fade-up fade-up-d2">
+      <div class="hero-logo-big">
+        <img src="png/logo.png" alt="ONG Semear é Preciso Brasil">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT BAND -->
+<div class="impact-band">
+  <div class="impact-inner">
+    <div class="impact-item"><span class="impact-number">100+</span><div class="impact-label">Crianças atendidas</div></div>
+    <div class="impact-item"><span class="impact-number">8</span><div class="impact-label">Municípios alcançados</div></div>
+    <div class="impact-item"><span class="impact-number">870</span><div class="impact-label">Cestas distribuídas</div></div>
+    <div class="impact-item"><span class="impact-number">12 anos</span><div class="impact-label">Transformando vidas</div></div>
+  </div>
+</div>
+
+<!-- CAUSAS -->
+<section id="causas">
+  <div class="container">
+    <div class="section-tag">Nossas causas</div>
+    <h2 class="section-title">Onde cada doação<br><span>faz a diferença</span></h2>
+    <p class="section-desc">Atuamos em frentes essenciais para garantir que nenhuma criança ou família fique para trás.</p>
+
+    <div class="causas-grid">
+      <div class="causa-card">
+        <div class="causa-icon-wrap green">🍽️</div>
+        <div class="causa-body">
+          <h3>Segurança Alimentar</h3>
+          <p>Distribuição de cestas básicas, refeições quentes e kits de alimentos para famílias em situação de insegurança alimentar em comunidades carentes.</p>
+        </div>
+      </div>
+      <div class="causa-card">
+        <div class="causa-icon-wrap yellow">📚</div>
+        <div class="causa-body">
+          <h3>Educação & Reforço Escolar</h3>
+          <p>Apoio pedagógico, material escolar, uniformes e bolsas de estudo para crianças e adolescentes em situação de vulnerabilidade social.</p>
+        </div>
+      </div>
+      <div class="causa-card">
+        <div class="causa-icon-wrap blue">🏥</div>
+        <div class="causa-body">
+          <h3>Saúde & Bem-Estar</h3>
+          <p>Encaminhamento médico, distribuição de medicamentos, higiene básica e atendimento psicossocial para famílias em situação de risco.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO AJUDAR -->
+<section id="ajudar" style="background: #fff;">
+  <div class="container">
+    <div class="section-tag">Como ajudar</div>
+    <h2 class="section-title">4 formas simples de<br><span>semear o bem</span></h2>
+    <p class="section-desc">Você não precisa de muito para transformar a realidade de alguém. Cada gesto importa.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Doe via Pix</h4>
+        <p>Transferência rápida, segura e 100% direcionada às nossas ações. Qualquer valor faz diferença.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Doe alimentos</h4>
+        <p>Realize doações de qualquer tipo de alimento. Temos estrutura para estoque de alimentos perecíveis.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Seja voluntário</h4>
+        <p>Doe seu tempo e talento. Precisamos de educadores, profissionais de saúde e tantos outros.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Compartilhe</h4>
+        <p>Espalhe nossa missão nas redes sociais. Um compartilhamento pode chegar ao doador certo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" style="background: var(--green-light);">
+  <div class="container">
+    <div class="section-tag">Histórias reais</div>
+    <h2 class="section-title">Vozes que nos<br><span>motivam a continuar</span></h2>
+    <p class="section-desc">Cada história é um motivo a mais para semear esperança todos os dias.</p>
+
+    <div class="dep-grid">
+      <div class="dep-card">
+        <p class="dep-text">Graças à ONG, meus filhos não vão mais dormir com fome. As cestas chegam todo mês e a nossa família conseguiu se reorganizar. É muito amor numa caixa.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">M</div>
+          <div><div class="dep-name">Maria das Graças</div><div class="dep-role">Beneficiária — Fortaleza, CE</div></div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <p class="dep-text">Minha filha recebia reforço escolar e material. Hoje ela passou no ENEM e vai para a universidade. O Semear é Preciso foi o começo de tudo para a gente.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">R</div>
+          <div><div class="dep-name">Raimundo Nonato</div><div class="dep-role">Pai de beneficiária — Caucaia, CE</div></div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <p class="dep-text">Ser voluntária aqui mudou a minha vida. Ver o sorriso das crianças quando chegam para as atividades é uma recompensa que nenhum salário paga.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">J</div>
+          <div><div class="dep-name">Josiane Ferreira</div><div class="dep-role">Voluntária educadora</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOE / PIX -->
+<section id="doe" style="background: var(--blue); padding: 80px 40px;">
+  <div class="doe-inner">
+    <div class="doe-text">
+      <div class="section-tag">Doe agora</div>
+      <h2 class="section-title" style="color: #fff;">Sua doação chega<br><span style="color: var(--yellow);">diretamente às mãos</span><br>de quem precisa</h2>
+      <p class="section-desc">100% transparente. Cada real doado é convertido em ação real para crianças e famílias em situação de vulnerabilidade.</p>
+
+      <div class="pix-key-card">
+        <div class="pix-label">Chave Pix</div>
+        <div class="pix-key" id="pixKeyDisplay">024.740.664-38</div>
+        <button class="pix-copy-btn" id="copyBtn" onclick="copyPix()">📋 Copiar chave Pix</button>
+        <p class="pix-info">Titular: Ana Carla.</p>
+      </div>
+
+      <div class="pix-key-card" style="margin-top: 0;">
+        <div class="pix-label">Favorecido</div>
+        <div class="pix-key" style="font-size: 16px; color: rgba(255,255,255,0.9);">ONG Semear É Preciso Brasil</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 6px;">CNPJ: 42.519.103/0001-02 <span style="color: rgba(255,255,255,0.3);">Rua Cruzeiro do Sul, 31 - Barra de Jangada, Jaboatao dos Guararapes - PE, 54.470-050.</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="qr-section">
+        <div class="qr-title">QR Code Pix</div>
+        <div class="qr-subtitle">Aponte a câmera do celular e doe em segundos</div>
+
+        <img id="qrPreview" class="qr-preview" style="display:block;" src="data:image/png;base64,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" alt="QR Code Pix">
+
+        <p class="qr-note">Aponte sua Câmera para fazer uma doação via Pix QR Code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/mnt/user-data/uploads/1776943191195_image.png" alt="ONG Semear é Preciso" onerror="this.style.display='none'">
+      <p>Organização sem fins lucrativos dedicada a levar alimentação, educação e saúde a crianças e famílias vulneráveis.</p>
+      <div class="footer-social">
+        <a class="social-icon" href="https://www.instagram.com/ong_semearepreciso/" title="Instagram">📸</a>
+        <a class="social-icon" href="#" title="Facebook">📘</a>
+        <a class="social-icon" href="https://wa.link/6m25cq" title="WhatsApp">💬</a>
+        <a class="social-icon" href="#" title="YouTube">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#causas">Nossas causas</a>
+      <a href="#ajudar">Como ajudar</a>
+      <a href="#depoimentos">Histórias</a>
+      <a href="#doe">Doe agora</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="mailto:ongsemearpreciso@gmail.com">ongsemearpreciso@gmail.com</a>
+      <a href="tel:+5581981973113">(81) 98197-3113</a>
+      <a href="#">Rua Cruzeiro do Sul, 31 - Barra de Jangada, Jaboatao dos Guararapes - PE, 54.470-050.</a>
+      <a href="#">Segunda a sexta, 8h–17h</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ONG Semear É Preciso Brasil — Todos os direitos reservados</span>
+    <span>Feito com <span>💚</span> para o Brasil</span>
+  </div>
+</footer>
+
+<script>
+  function copyPix() {
+    const key = document.getElementById('pixKeyDisplay').textContent.trim();
+    navigator.clipboard.writeText(key).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Chave copiada!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 Copiar chave Pix';
+        btn.classList.remove('copied');
+      }, 2500);
+    });
+  }
+
+  function selectValor(el, val) {
+    document.querySelectorAll('.valor-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function loadQR(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const preview = document.getElementById('qrPreview');
+      const placeholder = document.getElementById('qrPlaceholder');
+      const removeBtn = document.getElementById('qrRemoveBtn');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+      placeholder.style.display = 'none';
+      removeBtn.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeQR() {
+    document.getElementById('qrPreview').style.display = 'none';
+    document.getElementById('qrPreview').src = '';
+    document.getElementById('qrPlaceholder').style.display = 'flex';
+    document.getElementById('qrRemoveBtn').style.display = 'none';
+    document.getElementById('qrInput').value = '';
+  }
+</script>
+</body>
+</html>
